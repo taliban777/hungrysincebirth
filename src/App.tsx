@@ -23,9 +23,13 @@ function SpinningLogo() {
       <div className="absolute left-[10%] top-[21%] h-2 w-2 rounded-full bg-white shadow-[0_0_18px_6px_rgba(255,255,255,0.8)] animate-sparkle" />
       <div className="absolute right-[13%] top-[31%] h-1.5 w-1.5 rounded-full bg-white shadow-[0_0_16px_5px_rgba(255,255,255,0.75)] animate-sparkle [animation-delay:1.8s]" />
       <div className="absolute bottom-[26%] left-[18%] h-1 w-1 rounded-full bg-white shadow-[0_0_12px_4px_rgba(255,255,255,0.8)] animate-sparkle [animation-delay:3.2s]" />
-      <div className="relative w-full animate-logo-spin [filter:drop-shadow(0_0_22px_rgba(255,255,255,0.2))]">
-        <img src={chromeLogo} alt="hungrysincebirth chrome emblem" className="relative z-10 w-full" />
-        <span className="pointer-events-none absolute inset-[7%] rounded-[45%] border border-white/20 opacity-60 blur-[1px]" />
+      <div className="logo-stage relative w-full animate-logo-spin">
+        <div className="relative z-10">
+          <div className="logo-extrusion" aria-hidden="true" />
+          <img src={chromeLogo} alt="hungrysincebirth chrome emblem" className="relative z-10 w-full logo-face" />
+          <span className="pointer-events-none absolute inset-[7%] rounded-[45%] border border-white/35 opacity-70 blur-[1px]" />
+          <span className="pointer-events-none absolute inset-[3%] rounded-[45%] border border-black/70 opacity-80" />
+        </div>
       </div>
       <div className="relative z-20 mt-[-4px] text-center animate-rise">
         <h1 className="mt-3 text-[clamp(1.15rem,3.6vw,2.2rem)] font-light uppercase tracking-[0.31em] text-white/95 [text-shadow:0_0_24px_rgba(255,255,255,0.28)]">Coming soon</h1>
