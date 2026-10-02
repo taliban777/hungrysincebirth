@@ -36,6 +36,7 @@ function SpinningLogo() {
               />
             ))}
           </div>
+          <img src={chromeLogo} alt="" aria-hidden="true" className="logo-back" />
           <img src={chromeLogo} alt="hungrysincebirth chrome emblem" className="relative z-10 w-full logo-face" />
           <span className="pointer-events-none absolute inset-[7%] z-20 rounded-[45%] border border-white/35 opacity-70 blur-[1px]" />
           <span className="pointer-events-none absolute inset-[3%] z-20 rounded-[45%] border border-black/70 opacity-80" />
