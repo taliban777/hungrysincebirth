@@ -18,7 +18,7 @@ function BackgroundLayer() {
 }
 
 function SpinningLogo() {
-  const [isSpinning, setIsSpinning] = useState(false);
+  const [spinCount, setSpinCount] = useState(0);
 
   return (
     <div className="relative flex w-[min(84vw,700px)] flex-col items-center">
@@ -28,11 +28,11 @@ function SpinningLogo() {
       <div className="absolute bottom-[26%] left-[18%] h-1 w-1 rounded-full bg-white shadow-[0_0_12px_4px_rgba(255,255,255,0.8)] animate-sparkle [animation-delay:3.2s]" />
       <button
         type="button"
-        aria-label={isSpinning ? 'Stop spinning logo' : 'Spin logo'}
-        className={`logo-stage relative w-full cursor-pointer border-0 bg-transparent p-0 ${isSpinning ? 'is-spinning' : ''}`}
-        onClick={() => setIsSpinning((spinning) => !spinning)}
+        aria-label="Spin logo 360 degrees"
+        className="logo-stage relative w-full cursor-pointer border-0 bg-transparent p-0"
+        onClick={() => setSpinCount((count) => count + 1)}
       >
-        <div className="relative z-10">
+        <div key={spinCount} className="logo-rotation relative z-10">
           <div className="logo-extrusion" aria-hidden="true" />
           <img src={chromeLogo} alt="hungrysincebirth chrome emblem" className="relative z-10 w-full logo-face" />
           <span className="pointer-events-none absolute inset-[7%] rounded-[45%] border border-white/35 opacity-70 blur-[1px]" />

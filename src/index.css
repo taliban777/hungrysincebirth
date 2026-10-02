@@ -26,9 +26,10 @@ body {
   overflow: hidden;
 }
 
-@keyframes logo-spin {
-  0%, 100% { transform: perspective(1400px) rotateY(-9deg) rotateX(2deg) scale(0.985); }
-  50% { transform: perspective(1400px) rotateY(9deg) rotateX(-2deg) scale(1); }
+@keyframes logo-spin-360 {
+  0% { transform: perspective(1400px) rotateY(0deg) rotateX(2deg) scale(0.985); }
+  45% { transform: perspective(1400px) rotateY(180deg) rotateX(-2deg) scale(1); }
+  100% { transform: perspective(1400px) rotateY(360deg) rotateX(2deg) scale(0.985); }
 }
 
 @keyframes breathe {
@@ -62,10 +63,10 @@ body {
   backface-visibility: hidden;
 }
 
-.logo-stage:hover,
-.logo-stage:focus-visible,
-.logo-stage.is-spinning {
-  animation: logo-spin 1.8s linear infinite;
+.logo-stage:hover .logo-rotation,
+.logo-stage:focus-visible .logo-rotation,
+.logo-stage:active .logo-rotation {
+  animation: logo-spin-360 1.4s cubic-bezier(0.22, 1, 0.36, 1) 1;
 }
 
 .logo-stage:focus-visible {
@@ -79,9 +80,9 @@ body {
 .animate-rise { animation: rise 1.2s 0.45s both cubic-bezier(0.22, 1, 0.36, 1); }
 
 @media (prefers-reduced-motion: reduce) {
-  .logo-stage:hover,
-  .logo-stage:focus-visible,
-  .logo-stage.is-spinning,
+  .logo-stage:hover .logo-rotation,
+  .logo-stage:focus-visible .logo-rotation,
+  .logo-stage:active .logo-rotation,
   .animate-breathe,
   .animate-sparkle,
   .animate-rise { animation: none; }
