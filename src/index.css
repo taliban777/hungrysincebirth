@@ -62,13 +62,26 @@ body {
   backface-visibility: hidden;
 }
 
-.animate-logo-spin { animation: logo-spin 16s ease-in-out infinite; transform-style: preserve-3d; backface-visibility: visible; }
+.logo-stage:hover,
+.logo-stage:focus-visible,
+.logo-stage.is-spinning {
+  animation: logo-spin 1.8s linear infinite;
+}
+
+.logo-stage:focus-visible {
+  outline: 1px solid rgba(255, 255, 255, 0.7);
+  outline-offset: 10px;
+}
+
+.logo-stage { transform-style: preserve-3d; backface-visibility: visible; }
 .animate-breathe { animation: breathe 5s ease-in-out infinite; }
 .animate-sparkle { animation: sparkle 5s ease-in-out infinite; }
 .animate-rise { animation: rise 1.2s 0.45s both cubic-bezier(0.22, 1, 0.36, 1); }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-logo-spin,
+  .logo-stage:hover,
+  .logo-stage:focus-visible,
+  .logo-stage.is-spinning,
   .animate-breathe,
   .animate-sparkle,
   .animate-rise { animation: none; }
