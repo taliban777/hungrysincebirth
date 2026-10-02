@@ -1,4 +1,5 @@
 import { ArrowUpRight } from 'lucide-react';
+import { Analytics } from '@vercel/analytics/react';
 import backgroundImage from '@/assets/Symmetrical Brick Housing Complex with Water Tower.png';
 import chromeLogo from '@/assets/Chrome HSB Green.png';
 
@@ -48,6 +49,7 @@ function App() {
           <ArrowUpRight size={12} strokeWidth={1.5} className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
         </a>
       </div>
+      <Analytics />
     </main>
   );
 }
