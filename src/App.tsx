@@ -1,6 +1,6 @@
 import { ArrowUpRight } from 'lucide-react';
-import backgroundImage from '@/assets/Symmetrical_Brick_Housing_Complex_with_Water_Tower.png';
-import chromeLogo from '@/assets/Chrome_HSB_Green.png';
+import backgroundImage from '@/assets/Symmetrical Brick Housing Complex with Water Tower.png';
+import chromeLogo from '@/assets/Chrome HSB Green.png';
 
 function BackgroundLayer() {
   return (
