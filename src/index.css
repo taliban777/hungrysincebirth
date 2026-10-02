@@ -28,7 +28,7 @@ body {
 
 @keyframes logo-spin-360 {
   0% { transform: perspective(1400px) rotateY(0deg) rotateX(2deg) scale(0.985); }
-  45% { transform: perspective(1400px) rotateY(180deg) rotateX(-2deg) scale(1); }
+  50% { transform: perspective(1400px) rotateY(180deg) rotateX(-2deg) scale(1); }
   100% { transform: perspective(1400px) rotateY(360deg) rotateX(2deg) scale(0.985); }
 }
 
@@ -53,36 +53,48 @@ body {
   transform-style: preserve-3d;
 }
 
-.logo-extrusion { display: none; }
+.logo-stage {
+  perspective: 1400px;
+  transform-style: preserve-3d;
+}
+
+.logo-rotation {
+  animation: logo-spin-360 12s linear infinite;
+  transform-style: preserve-3d;
+  backface-visibility: visible;
+}
+
+.logo-depth {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+
+.logo-depth-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  opacity: 1;
+  transform-style: preserve-3d;
+  filter: brightness(0.18) saturate(0.75) contrast(1.35);
+}
+
+.logo-depth-layer:nth-child(4n) { filter: brightness(0.28) saturate(0.85) contrast(1.3); }
+.logo-depth-layer:nth-child(2n) { filter: brightness(0.12) saturate(0.6) contrast(1.45); }
 
 .logo-face {
-  filter: drop-shadow(-1px 2px 0 rgba(0, 0, 0, 0.9))
-    drop-shadow(-2px 4px 0 rgba(0, 0, 0, 0.72))
-    drop-shadow(-4px 7px 6px rgba(0, 0, 0, 0.65));
-  transform: translateZ(10px);
+  position: relative;
+  transform: translateZ(22px);
   backface-visibility: hidden;
+  filter: brightness(1.08) contrast(1.08) drop-shadow(0 0 14px rgba(255,255,255,0.18));
 }
-
-.logo-stage:hover .logo-rotation,
-.logo-stage:focus-visible .logo-rotation,
-.logo-stage:active .logo-rotation {
-  animation: logo-spin-360 1.4s cubic-bezier(0.22, 1, 0.36, 1) 1;
-}
-
-.logo-stage:focus-visible {
-  outline: 1px solid rgba(255, 255, 255, 0.7);
-  outline-offset: 10px;
-}
-
-.logo-stage { transform-style: preserve-3d; backface-visibility: visible; }
 .animate-breathe { animation: breathe 5s ease-in-out infinite; }
 .animate-sparkle { animation: sparkle 5s ease-in-out infinite; }
 .animate-rise { animation: rise 1.2s 0.45s both cubic-bezier(0.22, 1, 0.36, 1); }
 
 @media (prefers-reduced-motion: reduce) {
-  .logo-stage:hover .logo-rotation,
-  .logo-stage:focus-visible .logo-rotation,
-  .logo-stage:active .logo-rotation,
+  .logo-rotation,
   .animate-breathe,
   .animate-sparkle,
   .animate-rise { animation: none; }

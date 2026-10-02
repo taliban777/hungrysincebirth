@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import backgroundImage from '@/assets/Symmetrical Brick Housing Complex with Water Tower.png';
 import chromeLogo from '@/assets/Chrome HSB Green.png';
@@ -18,27 +17,30 @@ function BackgroundLayer() {
 }
 
 function SpinningLogo() {
-  const [spinCount, setSpinCount] = useState(0);
-
   return (
     <div className="relative flex w-[min(84vw,700px)] flex-col items-center">
       <div className="absolute left-1/2 top-1/2 h-[min(68vw,450px)] w-[min(68vw,450px)] -translate-x-1/2 -translate-y-[58%] rounded-full bg-white/10 blur-[90px] animate-breathe" />
       <div className="absolute left-[10%] top-[21%] h-2 w-2 rounded-full bg-white shadow-[0_0_18px_6px_rgba(255,255,255,0.8)] animate-sparkle" />
       <div className="absolute right-[13%] top-[31%] h-1.5 w-1.5 rounded-full bg-white shadow-[0_0_16px_5px_rgba(255,255,255,0.75)] animate-sparkle [animation-delay:1.8s]" />
       <div className="absolute bottom-[26%] left-[18%] h-1 w-1 rounded-full bg-white shadow-[0_0_12px_4px_rgba(255,255,255,0.8)] animate-sparkle [animation-delay:3.2s]" />
-      <button
-        type="button"
-        aria-label="Spin logo 360 degrees"
-        className="logo-stage relative w-full cursor-pointer border-0 bg-transparent p-0"
-        onClick={() => setSpinCount((count) => count + 1)}
-      >
-        <div key={spinCount} className="logo-rotation relative z-10">
-          <div className="logo-extrusion" aria-hidden="true" />
+      <div className="logo-stage relative w-full" aria-label="Spinning hungrysincebirth chrome emblem">
+        <div className="logo-rotation relative z-10">
+          <div className="logo-depth" aria-hidden="true">
+            {Array.from({ length: 14 }, (_, index) => (
+              <img
+                key={index}
+                src={chromeLogo}
+                alt=""
+                className="logo-depth-layer"
+                style={{ transform: `translate3d(${(index + 1) * -0.8}px, ${(index + 1) * 1.15}px, ${index * -1.5}px)` }}
+              />
+            ))}
+          </div>
           <img src={chromeLogo} alt="hungrysincebirth chrome emblem" className="relative z-10 w-full logo-face" />
-          <span className="pointer-events-none absolute inset-[7%] rounded-[45%] border border-white/35 opacity-70 blur-[1px]" />
-          <span className="pointer-events-none absolute inset-[3%] rounded-[45%] border border-black/70 opacity-80" />
+          <span className="pointer-events-none absolute inset-[7%] z-20 rounded-[45%] border border-white/35 opacity-70 blur-[1px]" />
+          <span className="pointer-events-none absolute inset-[3%] z-20 rounded-[45%] border border-black/70 opacity-80" />
         </div>
-      </button>
+      </div>
       <div className="relative z-20 mt-[-4px] text-center animate-rise">
         <h1 className="mt-3 text-[clamp(1.15rem,3.6vw,2.2rem)] font-light uppercase tracking-[0.31em] text-white/95 [text-shadow:0_0_24px_rgba(255,255,255,0.28)]">Coming soon</h1>
       </div>
