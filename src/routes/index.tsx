@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { InteractivePager } from "@/components/InteractivePager";
-import chromeLogo from "@/assets/chrome-hsb-green-final.png.asset.json";
-import housingBackground from "@/assets/housing-background-final.png.asset.json";
+const CHROME_LOGO_URL = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/chrome-hsb-green-final-PQP3OyXde27dZK1oMZzTaGTHQbrgVc.png";
+const HOUSING_BACKGROUND_URL = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/housing-background-final-zRoNx41IABrhTQidhuuntiacUQaFLV.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -22,13 +22,13 @@ function Index() {
   return (
     <main className="coming-page">
       <div className="coming-background" aria-hidden="true">
-        <img src={housingBackground.url} alt="" />
+        <img src={HOUSING_BACKGROUND_URL} alt="" />
       </div>
       <section className="coming-content" aria-label="Hungry Since Birth coming soon">
         <div className="brand-stack">
           <div className="brand-spin">
-            <img className="brand-face brand-face-front" src={chromeLogo.url} alt="Hungry Since Birth chrome emblem" />
-            <img className="brand-face brand-face-back" src={chromeLogo.url} alt="" aria-hidden="true" />
+            <img className="brand-face brand-face-front" src={CHROME_LOGO_URL} alt="Hungry Since Birth chrome emblem" />
+            <img className="brand-face brand-face-back" src={CHROME_LOGO_URL} alt="" aria-hidden="true" />
           </div>
           <h1 className="coming-title">Coming soon</h1>
         </div>
