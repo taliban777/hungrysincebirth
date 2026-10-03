@@ -29,8 +29,8 @@ export function InteractivePager() {
     audioRef.current?.pause();
   }, []);
 
-  function playAudio(track: string | null) {
-    if (!track) return;
+  async function playAudio(track: string | null) {
+    if (!track) return false;
     const audio = audioRef.current ?? new Audio();
     audioRef.current = audio;
     if (audio.src !== track) {
@@ -38,7 +38,14 @@ export function InteractivePager() {
       audio.load();
     }
     audio.volume = volume / 100;
-    void audio.play().catch(() => setPlaying(false));
+    try {
+      await audio.play();
+      setPlaying(true);
+      return true;
+    } catch {
+      setPlaying(false);
+      return false;
+    }
   }
 
   function pauseAudio() {
@@ -62,13 +69,15 @@ export function InteractivePager() {
   function handleGreen() {
     if (!powered) {
       setPowered(true);
-      setPlaying(true);
-      playAudio(currentTrack);
+      void playAudio(currentTrack);
       return;
     }
-    if (playing) pauseAudio();
-    else playAudio(currentTrack);
-    setPlaying((value) => !value);
+    if (playing) {
+      pauseAudio();
+      setPlaying(false);
+    } else {
+      void playAudio(currentTrack);
+    }
   }
 
   function handleRed() {
