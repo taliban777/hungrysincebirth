@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { AUDIO_MATRIX, SLOGANS, adjustVolume, cycleSlogan, getNewYorkClock } from "@/lib/pager";
-import pagerAsset from "@/assets/vintage-pager.png.asset.json";
+const PAGER_IMAGE_URL = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/vintage-pager-mNqYoadrZycLqxeMp7xaWh497vyEdf.png";
 
 export function InteractivePager() {
   const [powered, setPowered] = useState(true);
@@ -91,7 +91,7 @@ export function InteractivePager() {
   return (
     <div className="pager-float" aria-label="Interactive HSB pager">
       <div className="pager-art">
-        <img src={pagerAsset.url} alt="Vintage black HSB pager with an LCD screen and physical controls" className="pager-photo" draggable={false} />
+        <img src={PAGER_IMAGE_URL} alt="Vintage black HSB pager with an LCD screen and physical controls" className="pager-photo" draggable={false} />
         <div className={`pager-screen${powered ? "" : " pager-screen-off"}`} aria-live="polite" aria-label={accessibleDisplay}>
           {powered && (
             <>
