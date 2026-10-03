@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { AUDIO_MATRIX, SLOGANS, adjustVolume, cycleSlogan, getNewYorkClock } from "@/lib/pager";
 const PAGER_IMAGE_URL = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/vintage-pager-mNqYoadrZycLqxeMp7xaWh497vyEdf.png";
@@ -10,6 +10,7 @@ export function InteractivePager() {
   const [volume, updateVolume] = useState(50);
   const [clock, setClock] = useState<{ date: string; time: string } | null>(null);
   const [showVolume, setShowVolume] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     const tick = () => setClock(getNewYorkClock(new Date()));
@@ -24,22 +25,42 @@ export function InteractivePager() {
     return () => window.clearTimeout(timeout);
   }, [showVolume, volume]);
 
-  function playAudio(track: string | null) {
-    // TODO: Insert audio file here — load and play the selected slogan's track.
-    void track;
+  useEffect(() => () => {
+    audioRef.current?.pause();
+  }, []);
+
+  async function playAudio(track: string | null) {
+    if (!track) return false;
+    const audio = audioRef.current ?? new Audio();
+    audioRef.current = audio;
+    if (audio.src !== track) {
+      audio.src = track;
+      audio.load();
+    }
+    audio.volume = volume / 100;
+    try {
+      await audio.play();
+      setPlaying(true);
+      return true;
+    } catch {
+      setPlaying(false);
+      return false;
+    }
   }
 
   function pauseAudio() {
-    // TODO: Insert audio file here — pause the active track.
+    audioRef.current?.pause();
   }
 
   function stopAudio() {
-    // TODO: Insert audio file here — stop and reset the active track.
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio.pause();
+    audio.currentTime = 0;
   }
 
   function setVolume(value: number) {
-    // TODO: Insert audio file here — set the active audio element's volume to value / 100.
-    void value;
+    if (audioRef.current) audioRef.current.volume = value / 100;
   }
 
   const currentSlogan = SLOGANS[sloganIndex] ?? SLOGANS[0];
@@ -48,13 +69,15 @@ export function InteractivePager() {
   function handleGreen() {
     if (!powered) {
       setPowered(true);
-      setPlaying(true);
-      playAudio(currentTrack);
+      void playAudio(currentTrack);
       return;
     }
-    if (playing) pauseAudio();
-    else playAudio(currentTrack);
-    setPlaying((value) => !value);
+    if (playing) {
+      pauseAudio();
+      setPlaying(false);
+    } else {
+      void playAudio(currentTrack);
+    }
   }
 
   function handleRed() {

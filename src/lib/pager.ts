@@ -6,7 +6,7 @@ export const SLOGANS = [
 ] as const;
 
 export const AUDIO_MATRIX: Record<(typeof SLOGANS)[number], { track: string | null }> = {
-  "BORN EARLY STILL HERE": { track: null },
+  "BORN EARLY STILL HERE": { track: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/audio_%2B036863_01_01_06_00_00-P1blBGpEuYmIC89TNSw6vvGMYvcx0p.mp4" },
   "HUNGRY SINCE BIRTH": { track: null },
   "BORN HUNGRY, STAY HUNGRY": { track: null },
   "AMBITION WORN DAILY": { track: null },
