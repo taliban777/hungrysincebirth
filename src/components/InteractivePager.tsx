@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { AUDIO_MATRIX, SLOGANS, adjustVolume, cycleSlogan, getNewYorkClock } from "@/lib/pager";
-import pagerAsset from "@/assets/vintage-pager.png.asset.json";
+import pagerAsset from "@/assets/vintage-pager.png";
 
 export function InteractivePager() {
   const [powered, setPowered] = useState(true);

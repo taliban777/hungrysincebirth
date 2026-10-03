@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { InteractivePager } from "@/components/InteractivePager";
-import chromeLogo from "@/assets/chrome-hsb-green-final.png.asset.json";
-import housingBackground from "@/assets/housing-background-final.png.asset.json";
+import chromeLogo from "@/assets/chrome-hsb-green-final.png";
+import housingBackground from "@/assets/housing-background-final.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
