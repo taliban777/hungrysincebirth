@@ -52,13 +52,9 @@ export function InteractivePager() {
       playAudio(currentTrack);
       return;
     }
-    if (playing) {
-      pauseAudio();
-      setPlaying(false);
-    } else {
-      playAudio(currentTrack);
-      setPlaying(true);
-    }
+    if (playing) pauseAudio();
+    else playAudio(currentTrack);
+    setPlaying((value) => !value);
   }
 
   function handleRed() {
@@ -88,11 +84,15 @@ export function InteractivePager() {
     setShowVolume(true);
   }
 
+  const accessibleDisplay = powered
+    ? `${showVolume ? `Volume ${volume} percent` : currentSlogan}, ${clock?.date ?? ""} ${clock?.time ?? ""} New York time`
+    : "Pager off";
+
   return (
     <div className="pager-float" aria-label="Interactive HSB pager">
       <div className="pager-art">
         <img src={pagerAsset.url} alt="Vintage black HSB pager with an LCD screen and physical controls" className="pager-photo" draggable={false} />
-        <div className={`pager-screen${powered ? "" : " pager-screen-off"}`} aria-live="polite" aria-label={powered ? `${showVolume ? `Volume ${volume} percent` : currentSlogan}, ${clock?.date ?? ""} ${clock?.time ?? ""} New York time` : "Pager off"}>
+        <div className={`pager-screen${powered ? "" : " pager-screen-off"}`} aria-live="polite" aria-label={accessibleDisplay}>
           {powered && (
             <>
               <div className="pager-screen-icons" aria-hidden="true"><span>▂▄▆█</span><span>▰▰▰</span></div>

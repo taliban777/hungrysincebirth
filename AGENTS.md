@@ -9,6 +9,4 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 
-- Keep the linked Hungry Since Birth visual identity as locally referenced CDN asset pointers; the homepage reproduces its chrome emblem and photographic background around the uploaded interactive pager, so the experience stays branded without rebuilding the artwork in CSS.
-- Keep pager slogans, clock formatting, and audio-track slots in a separate pure module; this makes user-defined rules testable and future song files easy to attach.
-- Prebundle homepage React and control dependencies together in Vite development; late dependency discovery can swap the React module during HMR and blank an open preview with an invalid hooks dispatcher.
+- Keep interactive pager logic isolated in `src/components/InteractivePager.tsx` with pure state helpers in `src/lib/pager.ts`, so controls remain testable independently of the photographic presentation.

@@ -5,7 +5,6 @@ export const SLOGANS = [
   "AMBITION WORN DAILY",
 ] as const;
 
-// Track slots intentionally stay empty until the custom songs are provided.
 export const AUDIO_MATRIX: Record<(typeof SLOGANS)[number], { track: string | null }> = {
   "BORN EARLY STILL HERE": { track: null },
   "HUNGRY SINCE BIRTH": { track: null },

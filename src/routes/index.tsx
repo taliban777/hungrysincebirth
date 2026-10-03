@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { InteractivePager } from "@/components/InteractivePager";
-import chromeLogo from "@/assets/chrome-hsb-green.png.asset.json";
-import housingImage from "@/assets/brick-housing.png.asset.json";
+import chromeLogo from "@/assets/chrome-hsb-green-final.png.asset.json";
+import housingBackground from "@/assets/housing-background-final.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -22,12 +22,13 @@ function Index() {
   return (
     <main className="coming-page">
       <div className="coming-background" aria-hidden="true">
-        <img src={housingImage.url} alt="" />
+        <img src={housingBackground.url} alt="" />
       </div>
       <section className="coming-content" aria-label="Hungry Since Birth coming soon">
         <div className="brand-stack">
           <div className="brand-spin">
-            <img src={chromeLogo.url} alt="Hungry Since Birth chrome emblem" />
+            <img className="brand-face brand-face-front" src={chromeLogo.url} alt="Hungry Since Birth chrome emblem" />
+            <img className="brand-face brand-face-back" src={chromeLogo.url} alt="" aria-hidden="true" />
           </div>
           <h1 className="coming-title">Coming soon</h1>
         </div>
