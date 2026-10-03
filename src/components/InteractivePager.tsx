@@ -11,6 +11,7 @@ export function InteractivePager() {
   const [clock, setClock] = useState<{ date: string; time: string } | null>(null);
   const [showVolume, setShowVolume] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const buttonSoundRef = useRef<AudioContext | null>(null);
 
   useEffect(() => {
     const tick = () => setClock(getNewYorkClock(new Date()));
@@ -28,6 +29,31 @@ export function InteractivePager() {
   useEffect(() => () => {
     audioRef.current?.pause();
   }, []);
+
+  function playButtonSound() {
+    const AudioContextClass = window.AudioContext || (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+    if (!AudioContextClass) return;
+    const context = buttonSoundRef.current ?? new AudioContextClass();
+    buttonSoundRef.current = context;
+    if (context.state === "suspended") void context.resume();
+    const duration = 0.075;
+    const buffer = context.createBuffer(1, context.sampleRate * duration, context.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let index = 0; index < data.length; index += 1) {
+      data[index] = (Math.random() * 2 - 1) * Math.exp(-index / (data.length * 0.18));
+    }
+    const source = context.createBufferSource();
+    const filter = context.createBiquadFilter();
+    const gain = context.createGain();
+    source.buffer = buffer;
+    filter.type = "bandpass";
+    filter.frequency.setValueAtTime(1450, context.currentTime);
+    filter.Q.setValueAtTime(1.2, context.currentTime);
+    gain.gain.setValueAtTime(0.16, context.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, context.currentTime + duration);
+    source.connect(filter).connect(gain).connect(context.destination);
+    source.start();
+  }
 
   async function playAudio(track: string | null) {
     if (!track) return false;
@@ -67,6 +93,7 @@ export function InteractivePager() {
   const currentTrack = AUDIO_MATRIX[currentSlogan].track;
 
   function handleGreen() {
+    playButtonSound();
     if (!powered) {
       setPowered(true);
       void playAudio(currentTrack);
@@ -81,6 +108,7 @@ export function InteractivePager() {
   }
 
   function handleRed() {
+    playButtonSound();
     stopAudio();
     setPlaying(false);
     setPowered(false);
@@ -89,6 +117,7 @@ export function InteractivePager() {
 
   function handleSlogan(direction: -1 | 1) {
     if (!powered) return;
+    playButtonSound();
     const nextIndex = cycleSlogan(sloganIndex, direction);
     const nextSlogan = SLOGANS[nextIndex] ?? SLOGANS[0];
     if (playing) {
@@ -101,6 +130,7 @@ export function InteractivePager() {
 
   function handleVolume(direction: -1 | 1) {
     if (!powered) return;
+    playButtonSound();
     const nextVolume = adjustVolume(volume, direction);
     updateVolume(nextVolume);
     setVolume(nextVolume);
