@@ -7,8 +7,8 @@ export const SLOGANS = [
 
 export const AUDIO_MATRIX: Record<(typeof SLOGANS)[number], { track: string | null }> = {
   "BORN EARLY STILL HERE": { track: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/audio_%2B036863_01_01_06_00_00-P1blBGpEuYmIC89TNSw6vvGMYvcx0p.mp4" },
-  "HUNGRY SINCE BIRTH": { track: null },
-  "BORN HUNGRY, STAY HUNGRY": { track: null },
+  "HUNGRY SINCE BIRTH": { track: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/DREAMERZ%20INT%20%281%29-awQ6TsWvxKEZbDigDa1ZMYCmsBFauH.mp3" },
+  "BORN HUNGRY, STAY HUNGRY": { track: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Stick%20Up%20-%20%28Prod.HeyCam%29_WebDashboard-VYkzpyJpJCcmamGPotDDeAZLxMXHP6.mp3" },
   "AMBITION WORN DAILY": { track: null },
 };
 

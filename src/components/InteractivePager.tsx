@@ -11,6 +11,7 @@ export function InteractivePager() {
   const [clock, setClock] = useState<{ date: string; time: string } | null>(null);
   const [showVolume, setShowVolume] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const buttonSoundRef = useRef<AudioContext | null>(null);
 
   useEffect(() => {
     const tick = () => setClock(getNewYorkClock(new Date()));
@@ -28,6 +29,24 @@ export function InteractivePager() {
   useEffect(() => () => {
     audioRef.current?.pause();
   }, []);
+
+  function playButtonSound() {
+    const AudioContextClass = window.AudioContext || (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+    if (!AudioContextClass) return;
+    const context = buttonSoundRef.current ?? new AudioContextClass();
+    buttonSoundRef.current = context;
+    if (context.state === "suspended") void context.resume();
+    const oscillator = context.createOscillator();
+    const gain = context.createGain();
+    oscillator.type = "square";
+    oscillator.frequency.setValueAtTime(880, context.currentTime);
+    oscillator.frequency.exponentialRampToValueAtTime(440, context.currentTime + 0.045);
+    gain.gain.setValueAtTime(0.045, context.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, context.currentTime + 0.055);
+    oscillator.connect(gain).connect(context.destination);
+    oscillator.start();
+    oscillator.stop(context.currentTime + 0.06);
+  }
 
   async function playAudio(track: string | null) {
     if (!track) return false;
@@ -67,6 +86,7 @@ export function InteractivePager() {
   const currentTrack = AUDIO_MATRIX[currentSlogan].track;
 
   function handleGreen() {
+    playButtonSound();
     if (!powered) {
       setPowered(true);
       void playAudio(currentTrack);
@@ -81,6 +101,7 @@ export function InteractivePager() {
   }
 
   function handleRed() {
+    playButtonSound();
     stopAudio();
     setPlaying(false);
     setPowered(false);
@@ -89,6 +110,7 @@ export function InteractivePager() {
 
   function handleSlogan(direction: -1 | 1) {
     if (!powered) return;
+    playButtonSound();
     const nextIndex = cycleSlogan(sloganIndex, direction);
     const nextSlogan = SLOGANS[nextIndex] ?? SLOGANS[0];
     if (playing) {
@@ -101,6 +123,7 @@ export function InteractivePager() {
 
   function handleVolume(direction: -1 | 1) {
     if (!powered) return;
+    playButtonSound();
     const nextVolume = adjustVolume(volume, direction);
     updateVolume(nextVolume);
     setVolume(nextVolume);
