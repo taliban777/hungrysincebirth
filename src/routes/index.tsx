@@ -22,13 +22,13 @@ function Index() {
   return (
     <main className="coming-page">
       <div className="coming-background" aria-hidden="true">
-        <img src={housingBackground.url} alt="" />
+        <img src={housingBackground} alt="" />
       </div>
       <section className="coming-content" aria-label="Hungry Since Birth coming soon">
         <div className="brand-stack">
           <div className="brand-spin">
-            <img className="brand-face brand-face-front" src={chromeLogo.url} alt="Hungry Since Birth chrome emblem" />
-            <img className="brand-face brand-face-back" src={chromeLogo.url} alt="" aria-hidden="true" />
+            <img className="brand-face brand-face-front" src={chromeLogo} alt="Hungry Since Birth chrome emblem" />
+            <img className="brand-face brand-face-back" src={chromeLogo} alt="" aria-hidden="true" />
           </div>
           <h1 className="coming-title">Coming soon</h1>
         </div>

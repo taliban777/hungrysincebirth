@@ -91,7 +91,7 @@ export function InteractivePager() {
   return (
     <div className="pager-float" aria-label="Interactive HSB pager">
       <div className="pager-art">
-        <img src={pagerAsset.url} alt="Vintage black HSB pager with an LCD screen and physical controls" className="pager-photo" draggable={false} />
+        <img src={pagerAsset} alt="Vintage black HSB pager with an LCD screen and physical controls" className="pager-photo" draggable={false} />
         <div className={`pager-screen${powered ? "" : " pager-screen-off"}`} aria-live="polite" aria-label={accessibleDisplay}>
           {powered && (
             <>
