@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/react';
 import chromeLogo from '@/assets/Chrome HSB Green.png';
 import backgroundImage from '@/assets/Symmetrical Brick Housing Complex with Water Tower.png';
 
+const pagerReferenceUrl = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Vintage%20Pager%20with%20Realistic%20LCD%20Display-aWjr6E05LSNj7243kXUW0HtgSDXiXf.png';
 const logoUrl = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/HSB%20Astral%20Globe%20Emblem-QZjEuZN7Xnsw3RwOeHGCP9ziulCfsZ.png';
 const phrases = ['BORN EARLY STILL HERE', 'HUNGRY SINCE BIRTH', 'BORN HUNGRY, STAY HUNGRY', 'AMBITION WORN DAILY'];
 
@@ -47,6 +48,7 @@ function Pager() {
 
   return <div className={`pager-wrap ${isOn ? '' : 'pager-off'}`}>
     <div className="pager">
+      <img className="pager-reference" src={pagerReferenceUrl} alt="Realistic vintage black pager reference" />
       <div className="pager-top" />
       <div className="pager-body">
         <div className="lcd-bezel"><div className="lcd-screen">

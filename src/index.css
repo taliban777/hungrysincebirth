@@ -39,17 +39,17 @@ footer { position: relative; z-index: 1; padding: 8px 20px 17px; text-align: cen
 .logo-orbit { animation: logo-spin 16s linear infinite; transform-style: preserve-3d; }
 @keyframes logo-spin { 0% { transform: perspective(1000px) rotateY(0deg) rotateX(1deg) scale(.98); } 50% { transform: perspective(1000px) rotateY(180deg) rotateX(-1deg) scale(1); } 100% { transform: perspective(1000px) rotateY(360deg) rotateX(1deg) scale(.98); } }
 .pager-wrap { width: min(92vw, 620px); }
-.pager { position: relative; width: min(92vw, 620px); aspect-ratio: 1.29 / 1; overflow: visible; border: 0; padding: 0; background: transparent; box-shadow: none; }
-.pager-top { position: absolute; z-index: 3; top: -1%; left: 3%; width: 52%; height: 10%; border-radius: 28px 28px 12px 12px; background: linear-gradient(#393939, #111 70%); box-shadow: inset 0 2px 2px #9998, inset 0 -5px 8px #000, 0 3px 4px #000; }
-.pager-body { position: absolute; inset: 4% 1% 0; border-radius: 26px 26px 36px 36px; background: linear-gradient(125deg, #111 0%, #303030 18%, #111 42%, #292929 72%, #0b0b0b); box-shadow: inset 0 2px 2px #777, inset 0 -9px 12px #000, 0 22px 30px #000b; }
-.pager-body::before { content: ''; position: absolute; inset: 4% 3% 3%; border: 2px solid #080808; border-radius: 19px 19px 29px 29px; box-shadow: inset 0 1px 2px #7777; pointer-events: none; }
-.lcd-bezel { position: absolute; z-index: 2; top: 15%; left: 12%; width: 76%; height: 29%; border: 9px solid #101010; border-radius: 20px; background: #202020; padding: 3px; box-shadow: inset 0 3px 8px #000, 0 2px 2px #777; }
+.pager { position: relative; width: min(92vw, 620px); aspect-ratio: 1 / 1; overflow: visible; border: 0; padding: 0; background: transparent; box-shadow: none; }
+.pager-reference { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: contain; filter: contrast(1.04) saturate(.82); }
+.pager-top { display: none; }
+.pager-body { position: absolute; inset: 0; z-index: 2; display: block; background: transparent; box-shadow: none; border-radius: 0; pointer-events: none; }
+.lcd-bezel { position: absolute; z-index: 2; top: 26.55%; left: 12.35%; width: 73.55%; height: 23.25%; border: 9px solid #101010; border-radius: 20px; background: #202020; padding: 3px; box-shadow: inset 0 3px 8px #000, 0 2px 2px #777; }
 .lcd-screen { min-height: 100%; height: 100%; border-radius: 10px; padding: 10px 13px 7px; }
-.pager-controls { position: absolute; z-index: 4; inset: 0; padding: 0; display: block; }
-.pager-controls .led-row { position: absolute; top: 48%; left: 14%; }
-.pager-controls .power { width: 74px; height: 39px; }
-.pager-controls .sticker { position: absolute; left: 12%; bottom: 5%; width: 36%; margin: 0; opacity: .92; filter: drop-shadow(0 2px 2px #000); }
-.pager-controls .nav-pad { position: absolute; right: 9%; bottom: 8%; }
+.pager-controls { position: absolute; z-index: 4; inset: 0; padding: 0; display: block; pointer-events: auto; }
+.pager-controls .led-row { position: absolute; top: 54.5%; left: 13.5%; }
+.pager-controls .power { width: 74px; height: 39px; opacity: .06; }
+.pager-controls .sticker { position: absolute; left: 12%; bottom: 5%; width: 36%; margin: 0; opacity: .02; }
+.pager-controls .nav-pad { position: absolute; right: 8.5%; bottom: 9%; opacity: .08; }
 .pager-shadow { margin-top: -8px; }
 @media (max-width: 560px) { .pager-controls .power { width: 54px; height: 31px; } .pager-controls .sticker { width: 35%; } .lcd-phrase { font-size: clamp(11px, 2.9vw, 19px); } .lcd-top, .lcd-meta, .lcd-bottom { font-size: 8px; } }
 
