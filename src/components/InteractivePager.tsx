@@ -36,16 +36,23 @@ export function InteractivePager() {
     const context = buttonSoundRef.current ?? new AudioContextClass();
     buttonSoundRef.current = context;
     if (context.state === "suspended") void context.resume();
-    const oscillator = context.createOscillator();
+    const duration = 0.075;
+    const buffer = context.createBuffer(1, context.sampleRate * duration, context.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let index = 0; index < data.length; index += 1) {
+      data[index] = (Math.random() * 2 - 1) * Math.exp(-index / (data.length * 0.18));
+    }
+    const source = context.createBufferSource();
+    const filter = context.createBiquadFilter();
     const gain = context.createGain();
-    oscillator.type = "square";
-    oscillator.frequency.setValueAtTime(880, context.currentTime);
-    oscillator.frequency.exponentialRampToValueAtTime(440, context.currentTime + 0.045);
-    gain.gain.setValueAtTime(0.045, context.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, context.currentTime + 0.055);
-    oscillator.connect(gain).connect(context.destination);
-    oscillator.start();
-    oscillator.stop(context.currentTime + 0.06);
+    source.buffer = buffer;
+    filter.type = "bandpass";
+    filter.frequency.setValueAtTime(1450, context.currentTime);
+    filter.Q.setValueAtTime(1.2, context.currentTime);
+    gain.gain.setValueAtTime(0.16, context.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, context.currentTime + duration);
+    source.connect(filter).connect(gain).connect(context.destination);
+    source.start();
   }
 
   async function playAudio(track: string | null) {
