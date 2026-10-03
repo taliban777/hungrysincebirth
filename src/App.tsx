@@ -4,7 +4,6 @@ import { Analytics } from '@vercel/analytics/react';
 import chromeLogo from '@/assets/Chrome HSB Green.png';
 import backgroundImage from '@/assets/Symmetrical Brick Housing Complex with Water Tower.png';
 
-const pagerImageUrl = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Vintage%20Pager%20with%20Realistic%20LCD%20Display-O8sEZ0wxzmtn8q4DBZar1NQRPoLEef.png';
 const logoUrl = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/HSB%20Astral%20Globe%20Emblem-QZjEuZN7Xnsw3RwOeHGCP9ziulCfsZ.png';
 const phrases = ['BORN EARLY STILL HERE', 'HUNGRY SINCE BIRTH', 'BORN HUNGRY, STAY HUNGRY', 'AMBITION WORN DAILY'];
 
@@ -48,23 +47,24 @@ function Pager() {
 
   return <div className={`pager-wrap ${isOn ? '' : 'pager-off'}`}>
     <div className="pager">
-      <img className="pager-realistic" src={pagerImageUrl} alt="Vintage black Hungry Since Birth pager" />
-      <div className="pager-screen-overlay"><div className="lcd-screen">
+      <div className="pager-top" />
+      <div className="pager-body">
+        <div className="lcd-bezel"><div className="lcd-screen">
           {isOn ? <>
             <div className="lcd-top"><span className="signal">▮▮▮</span><span>{isPlaying ? '▶' : 'Ⅱ'}</span><span className="battery">▰▰▰</span></div>
             <div className="lcd-phrase">{phrases[phraseIndex]}</div>
             <div className="lcd-meta"><span>{date}</span><span>TIME {time}</span></div>
             <div className="lcd-bottom"><span>{volume === 0 ? <VolumeX size={12} /> : <Volume2 size={12} />}</span><span>{'▮'.repeat(Math.ceil(volume / 20) || 1)}{'·'.repeat(5 - Math.ceil(volume / 20))}</span><span>{phraseIndex + 1}/4</span></div>
           </> : <div className="screen-off">OFF</div>}
-        </div>
-      </div>
-      <div className="pager-controls">
+        </div></div>
+        <div className="pager-controls">
           <div className="led-row"><button className="power green" onClick={() => { if (!isOn) setIsOn(true); else { setIsPlaying(!isPlaying); if (isPlaying) handlers.pauseAudio(); else handlers.playAudio(); } }} aria-label={isOn && isPlaying ? 'Pause slogan' : 'Play slogan'}><span /></button><button className="power red" onClick={togglePower} aria-label="Turn pager off"><span /></button></div>
           <div className="sticker"><img src={logoUrl} alt="Hungry Since Birth branding sticker" /></div>
           <div className="nav-pad"><button onClick={() => changePhrase(-1)} aria-label="Previous slogan"><ArrowLeft /></button><div><button onClick={() => changeVolume(10)} aria-label="Increase volume"><ArrowUp /></button><button onClick={() => changeVolume(-10)} aria-label="Decrease volume"><ArrowDown /></button></div><button onClick={() => changePhrase(1)} aria-label="Next slogan"><ArrowRight /></button></div>
         </div>
       </div>
-    <div className="pager-shadow" />
+      </div>
+      <div className="pager-shadow" />
     </div>;
 }
 
