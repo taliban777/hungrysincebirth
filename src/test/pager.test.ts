@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { AUDIO_MATRIX, SLOGANS, adjustVolume, cycleSlogan, getNewYorkClock } from "@/lib/pager";
 
 describe("pager controls", () => {
-  it("cycles through the four requested slogans in order and wraps around", () => {
+  it("cycles through the four existing slogans in order and wraps around", () => {
     expect(SLOGANS).toEqual([
       "BORN EARLY STILL HERE",
       "HUNGRY SINCE BIRTH",
