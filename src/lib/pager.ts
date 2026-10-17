@@ -1,4 +1,5 @@
 export const SLOGANS = [
+  "JAMAL GASOL",
   "BORN EARLY STILL HERE",
   "HUNGRY SINCE BIRTH",
   "BORN HUNGRY, STAY HUNGRY",
@@ -6,6 +7,7 @@ export const SLOGANS = [
 ] as const;
 
 export const AUDIO_MATRIX: Record<(typeof SLOGANS)[number], { track: string | null }> = {
+  "JAMAL GASOL": { track: "/audio/JamalGasol_Hungry Since Birth_ToneMix.mp3" },
   "BORN EARLY STILL HERE": { track: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Stick%20Up%20-%20%28Prod.HeyCam%29_WebDashboard-VYkzpyjPJCcmamGPotDDeAZLxMXHP6.mp3" },
   "HUNGRY SINCE BIRTH": { track: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/DREAMERZ%20INT%20%281%29-awQ6TsWvxKEZbDigDa1ZMYCmsBFauH.mp3" },
   "BORN HUNGRY, STAY HUNGRY": { track: null },
